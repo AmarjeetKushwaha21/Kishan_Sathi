@@ -26,8 +26,20 @@ function seedDemoSession() {
       localStorage.setItem(STORAGE_KEYS.user, JSON.stringify(DEMO_USER));
       return { token: DEMO_ACCESS_TOKEN, user: DEMO_USER };
     }
-    const user = readStoredUser();
-    return { token: localStorage.getItem(STORAGE_KEYS.token), user: user || DEMO_USER };
+    const storedUser = readStoredUser();
+    if (storedUser && (storedUser.fullName === 'Ramesh Kumar' || storedUser.firstName === 'Ramesh')) {
+      const updatedUser = {
+        ...DEMO_USER,
+        ...storedUser,
+        fullName: DEMO_USER.fullName,
+        firstName: DEMO_USER.firstName,
+        lastName: DEMO_USER.lastName,
+        email: DEMO_USER.email,
+      };
+      localStorage.setItem(STORAGE_KEYS.user, JSON.stringify(updatedUser));
+      return { token: localStorage.getItem(STORAGE_KEYS.token), user: updatedUser };
+    }
+    return { token: localStorage.getItem(STORAGE_KEYS.token), user: storedUser || DEMO_USER };
   } catch {
     return { token: DEMO_ACCESS_TOKEN, user: DEMO_USER };
   }

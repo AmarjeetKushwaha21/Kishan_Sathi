@@ -2,7 +2,7 @@ export const AI_SEED_MESSAGES = [
   {
     id: 'm1',
     role: 'assistant',
-    text: 'Namaste Ramesh! 👋 I am Sathi, your AI farming assistant. Ask me about sowing dates, fertilizer doses, pest control, mandi prices or weather — in Hindi, Punjabi or English.',
+    text: 'Namaste Amarjeet! 👋 I am Sathi, your AI farming assistant. Ask me about sowing dates, fertilizer doses, pest control, mandi prices or weather — in Hindi, Punjabi or English.',
     time: '9:02 AM',
   },
   {

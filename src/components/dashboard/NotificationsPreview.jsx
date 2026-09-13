@@ -24,7 +24,7 @@ export default function NotificationsPreview() {
 
   return (
     <Card variant="soft" className="flex h-full flex-col">
-      <SectionHeader title="Notifications" subtitle={`${unreadCount} unread`} to="/dashboard/settings" linkLabel="Settings" />
+      <SectionHeader title="Notifications" subtitle={`${unreadCount} unread`} to="/dashboard/notifications" />
 
       <ul className="flex-1 space-y-2.5">
         {NOTIFICATIONS.map((note) => {

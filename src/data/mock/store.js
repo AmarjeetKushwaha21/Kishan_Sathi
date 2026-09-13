@@ -624,7 +624,7 @@ export const STORE_SEED_ORDERS = [
     delivery: 0,
     gst: 43,
     total: 895,
-    address: { name: 'Ramesh Kumar', phone: '+91 98765 43210', line1: 'Village Khaira, Ludhiana', city: 'Ludhiana', state: 'Punjab', pincode: '141001' },
+    address: { name: 'Amarjeet Kushwaha', phone: '+91 98765 43210', line1: 'Village Gaddowal, Ludhiana', city: 'Ludhiana', state: 'Punjab', pincode: '141116' },
     payment: 'Cash on Delivery',
   },
   {
@@ -640,7 +640,7 @@ export const STORE_SEED_ORDERS = [
     delivery: 0,
     gst: 734,
     total: 15414,
-    address: { name: 'Ramesh Kumar', phone: '+91 98765 43210', line1: 'Village Khaira, Ludhiana', city: 'Ludhiana', state: 'Punjab', pincode: '141001' },
+    address: { name: 'Amarjeet Kushwaha', phone: '+91 98765 43210', line1: 'Village Gaddowal, Ludhiana', city: 'Ludhiana', state: 'Punjab', pincode: '141116' },
     payment: 'UPI',
   },
 ];

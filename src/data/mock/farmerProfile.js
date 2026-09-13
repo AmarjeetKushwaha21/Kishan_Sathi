@@ -1,17 +1,24 @@
+import mockUser from '@/data/mockUser.json';
+
 export const FARMER_IDENTITY = {
-  id: 'KS-1001',
-  fullName: 'Ramesh Kumar',
-  firstName: 'Ramesh',
-  phone: '+91 98765 43210',
-  email: 'ramesh@example.com',
-  village: 'Village Gaddowal',
-  district: 'Ludhiana',
-  state: 'Punjab',
-  languages: ['Punjabi', 'Hindi', 'English'],
-  bio: 'Second-generation farmer growing wheat, paddy and vegetables across 22.5 acres. Member of the Gaddowal co-operative society since 2019.',
-  memberSince: 'March 2019',
-  membershipTier: 'Gold',
-  avatarColor: '#16a34a',
+  id: mockUser.id,
+  fullName: mockUser.fullName,
+  firstName: mockUser.firstName,
+  lastName: mockUser.lastName,
+  role: mockUser.role,
+  phone: mockUser.phone,
+  email: mockUser.email,
+  village: mockUser.village,
+  district: mockUser.district,
+  state: mockUser.state,
+  pincode: mockUser.pincode,
+  languages: mockUser.languages,
+  bio: mockUser.bio,
+  memberSince: mockUser.memberSince,
+  membership: mockUser.membership,
+  membershipTier: mockUser.membershipTier,
+  avatarColor: mockUser.avatarColor,
+  upi: mockUser.upi,
 };
 
 export const FARM_DETAILS = {
@@ -55,7 +62,7 @@ export const BANK_DETAILS = {
   ifsc: 'SBIN0005524',
   accountType: 'Savings (Joint)',
   kyc: 'Completed',
-  upi: 'rameshkumar@oksbi',
+  upi: mockUser.upi,
   kycSteps: [
     { label: 'Identity verification', done: true },
     { label: 'Address verification', done: true },

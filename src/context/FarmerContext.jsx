@@ -28,8 +28,17 @@ function load() {
   try {
     const stored = JSON.parse(localStorage.getItem(STORAGE_KEY));
     if (stored && typeof stored === 'object') {
+      const mergedProfile = { ...defaults.profile, ...(stored.profile || {}) };
+      // Migrate old Ramesh Kumar demo state to Amarjeet Kushwaha
+      if (mergedProfile.fullName === 'Ramesh Kumar' || mergedProfile.fullName === 'Ramesh' || mergedProfile.firstName === 'Ramesh') {
+        mergedProfile.fullName = defaults.profile.fullName;
+        mergedProfile.firstName = defaults.profile.firstName;
+        mergedProfile.lastName = defaults.profile.lastName;
+        mergedProfile.email = defaults.profile.email;
+        mergedProfile.upi = defaults.profile.upi;
+      }
       return {
-        profile: { ...defaults.profile, ...(stored.profile || {}) },
+        profile: mergedProfile,
         settings: { ...defaults.settings, ...(stored.settings || {}) },
       };
     }
@@ -46,6 +55,30 @@ export function FarmerProvider({ children }) {
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify({ profile, settings }));
+    try {
+      const rawUser = localStorage.getItem('ks_user');
+      const currentUser = rawUser ? JSON.parse(rawUser) : {};
+      localStorage.setItem(
+        'ks_user',
+        JSON.stringify({
+          ...currentUser,
+          id: profile.id,
+          fullName: profile.fullName,
+          firstName: profile.firstName || profile.fullName.split(' ')[0],
+          lastName: profile.lastName || profile.fullName.split(' ').slice(1).join(' '),
+          phone: profile.phone,
+          email: profile.email,
+          role: profile.role || 'Farmer',
+          avatarColor: profile.avatarColor || '#16a34a',
+          preferences: {
+            language: profile.languages?.[0] || 'English',
+            location: `${profile.village || 'Gaddowal'}, ${profile.state || 'Punjab'}`,
+          },
+        })
+      );
+    } catch {
+      // ignore
+    }
   }, [profile, settings]);
 
   const updateProfile = useCallback((patch) => {

@@ -6,16 +6,18 @@ import Avatar from '@/components/ui/Avatar';
 import Badge from '@/components/ui/Badge';
 import { SIDEBAR_NAV_SECTIONS } from '@/constants/nav';
 import { useAuth } from '@/context/AuthContext';
+import { useFarmer } from '@/context/FarmerContext';
 import { useNotification } from '@/context/NotificationContext';
 import { cn } from '@/utils/cn';
 
-function NavItem({ item }) {
+function NavItem({ item, onClick }) {
   const { icon: Icon, label, to, end } = item;
   const { unreadCount } = useNotification();
   return (
     <NavLink
       to={to}
       end={end}
+      onClick={onClick}
       className={({ isActive }) =>
         cn(
           'focus-ring group flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm font-medium transition',
@@ -39,11 +41,20 @@ function NavItem({ item }) {
 
 function SidebarContent({ onClose }) {
   const { user, logout } = useAuth();
+  const { profile } = useFarmer();
+
+  const displayName = profile?.fullName || user?.fullName || 'Amarjeet Kushwaha';
+  const displayPhone = profile?.phone || user?.phone || '+91 98765 43210';
 
   return (
     <div className="flex h-full flex-col">
       <div className="flex items-center justify-between px-5 pb-6 pt-6">
-        <Link to="/dashboard" className="focus-ring rounded-xl" aria-label="Kishan Sathi dashboard home">
+        <Link
+          to="/dashboard"
+          onClick={onClose}
+          className="focus-ring rounded-xl"
+          aria-label="Kishan Sathi dashboard home"
+        >
           <Logo size="sm" />
         </Link>
         {onClose && (
@@ -67,7 +78,7 @@ function SidebarContent({ onClose }) {
             <ul className="space-y-1">
               {section.items.map((item) => (
                 <li key={item.to}>
-                  <NavItem item={item} />
+                  <NavItem item={item} onClick={onClose} />
                 </li>
               ))}
             </ul>
@@ -77,11 +88,18 @@ function SidebarContent({ onClose }) {
 
       <div className="border-t border-gray-100 p-4">
         <div className="flex items-center gap-3 rounded-xl bg-primary-50/60 p-3">
-          <Avatar name={user?.fullName} size="md" />
-          <div className="min-w-0 flex-1">
-            <p className="truncate text-sm font-semibold text-gray-900">{user?.fullName || 'Farmer'}</p>
-            <p className="truncate text-xs text-gray-500">{user?.phone || 'Sathi Pro Farmer'}</p>
-          </div>
+          <Link
+            to="/dashboard/profile"
+            onClick={onClose}
+            className="flex min-w-0 flex-1 items-center gap-3 rounded-lg text-left"
+            aria-label="Go to My Profile"
+          >
+            <Avatar name={displayName} size="md" />
+            <div className="min-w-0 flex-1">
+              <p className="truncate text-sm font-semibold text-gray-900">{displayName}</p>
+              <p className="truncate text-xs text-gray-500">{displayPhone}</p>
+            </div>
+          </Link>
           <button
             type="button"
             onClick={logout}

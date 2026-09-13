@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { FiBell, FiMenu } from 'react-icons/fi';
 
@@ -8,6 +8,7 @@ import BottomNav from '@/components/layout/BottomNav';
 import Avatar from '@/components/ui/Avatar';
 import ThemeToggle from '@/components/ui/ThemeToggle';
 import { useAuth } from '@/context/AuthContext';
+import { useFarmer } from '@/context/FarmerContext';
 import { useNotification } from '@/context/NotificationContext';
 import { cn } from '@/utils/cn';
 
@@ -50,7 +51,7 @@ const PAGE_TITLES = {
   '/dashboard/recommendation/demand': 'Market Demand',
   '/dashboard/recommendation/weather': 'Weather Compatibility',
   '/dashboard/recommendation/soil': 'Soil Compatibility',
-  '/dashboard/bazaar': 'Buy & Sell Bazaar',
+  '/dashboard/bazaar': 'Agriculture Store',
   '/dashboard/bazaar/wishlist': 'Wishlist',
   '/dashboard/bazaar/cart': 'My Cart',
   '/dashboard/bazaar/checkout': 'Checkout',
@@ -103,6 +104,9 @@ const PAGE_TITLES = {
   '/dashboard/admin/analytics': 'Admin · Analytics',
   '/dashboard/admin/notifications': 'Admin · Notifications',
   '/dashboard/admin/settings': 'Admin · Settings',
+  '/dashboard/central-schemes': 'Central Government Schemes',
+  '/dashboard/state-schemes': 'State Government Schemes',
+  '/dashboard/orders': 'My Orders',
   '/dashboard/settings': 'Settings',
 };
 
@@ -110,6 +114,7 @@ export default function DashboardLayout() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const drawerRef = useRef(null);
   const { user } = useAuth();
+  const { profile } = useFarmer();
   const { unreadCount } = useNotification();
   const navigate = useNavigate();
   const location = useLocation();
@@ -142,7 +147,7 @@ export default function DashboardLayout() {
     if (location.pathname.startsWith('/dashboard/bazaar/')) {
       if (location.pathname.includes('/product/')) return 'Product Details';
       if (location.pathname.includes('/order-success/')) return 'Order Confirmed';
-      return 'Buy & Sell Bazaar';
+      return 'Agriculture Store';
     }
     if (location.pathname.startsWith('/dashboard/marketplace/')) {
       if (location.pathname.includes('/offers/')) return 'Offer Details';
@@ -166,6 +171,9 @@ export default function DashboardLayout() {
     if (location.pathname.startsWith('/dashboard/admin/')) return 'Admin';
     return 'Kishan Sathi';
   }, [location.pathname]);
+
+  const displayName = profile?.fullName || user?.fullName || 'Amarjeet Kushwaha';
+  const displayRole = profile?.role || user?.role || 'Farmer';
 
   return (
     <div className="flex min-h-screen bg-primary-50/40">
@@ -211,15 +219,19 @@ export default function DashboardLayout() {
                   </span>
                 )}
               </button>
-              <div className="flex items-center gap-2.5 rounded-xl bg-primary-50/70 p-1.5 pr-3">
-                <Avatar name={user?.fullName} size="sm" />
-                <div className="hidden sm:block">
+              <Link
+                to="/dashboard/profile"
+                className="focus-ring flex items-center gap-2.5 rounded-xl bg-primary-50/70 p-1.5 pr-3 transition hover:bg-primary-100/80"
+                aria-label="View profile"
+              >
+                <Avatar name={displayName} size="sm" />
+                <div className="hidden sm:block text-left">
                   <p className="text-sm font-semibold leading-tight text-gray-900">
-                    {user?.firstName || 'Ramesh'}
+                    {displayName}
                   </p>
-                  <p className="text-[11px] leading-tight text-gray-500">{user?.role || 'Farmer'}</p>
+                  <p className="text-[11px] leading-tight text-gray-500">{displayRole}</p>
                 </div>
-              </div>
+              </Link>
             </div>
           </div>
         </header>

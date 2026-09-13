@@ -11,6 +11,7 @@ import Input from '@/components/ui/Input';
 import StoreHeader from '@/components/store/StoreHeader';
 import EmptyState from '@/components/ui/EmptyState';
 import { useStore } from '@/context/StoreContext';
+import { useFarmer } from '@/context/FarmerContext';
 import { formatINR } from '@/utils/format';
 import { cn } from '@/utils/cn';
 
@@ -23,6 +24,7 @@ const PAYMENT_METHODS = [
 export default function CheckoutPage() {
   const navigate = useNavigate();
   const { cartItems, subtotal, deliveryFee, gst, cartTotal, delivery, placeOrder } = useStore();
+  const { profile } = useFarmer();
   const [payment, setPayment] = useState('upi');
   const [serverError, setServerError] = useState(null);
   const [placing, setPlacing] = useState(false);
@@ -33,12 +35,12 @@ export default function CheckoutPage() {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      name: 'Ramesh Kumar',
-      phone: '9876543210',
-      line1: 'Village Khaira, Ludhiana',
-      city: 'Ludhiana',
-      state: 'Punjab',
-      pincode: '141001',
+      name: profile?.fullName || 'Amarjeet Kushwaha',
+      phone: profile?.phone?.replace(/\D/g, '').slice(-10) || '9876543210',
+      line1: profile?.village ? `${profile.village}, Ludhiana` : 'Village Gaddowal, Ludhiana',
+      city: profile?.district || 'Ludhiana',
+      state: profile?.state || 'Punjab',
+      pincode: profile?.pincode || '141116',
     },
   });
 

@@ -1,5 +1,5 @@
 import httpClient from './httpClient';
-import { DEMO_CREDENTIALS, DEMO_OTP } from '@/data/mock/user';
+import { DEMO_CREDENTIALS, DEMO_OTP, DEMO_USER } from '@/data/mock/user';
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -19,7 +19,7 @@ export const authService = {
       return mockResponse({
         accessToken: 'demo-access-token-ks-2026',
         refreshToken: 'demo-refresh-token-ks-2026',
-        user: DEMO_CREDENTIALS,
+        user: DEMO_USER,
       });
     }
     const { data } = await httpClient.post('/auth/login', credentials);
@@ -42,7 +42,7 @@ export const authService = {
       return mockResponse({
         accessToken: 'demo-access-token-ks-2026',
         refreshToken: 'demo-refresh-token-ks-2026',
-        user: DEMO_CREDENTIALS,
+        user: DEMO_USER,
       }, 1100);
     }
     const { data } = await httpClient.post('/auth/verify-otp', payload);

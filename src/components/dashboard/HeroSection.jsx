@@ -3,10 +3,18 @@ import { FiAward, FiMapPin, FiCalendar } from 'react-icons/fi';
 import Avatar from '@/components/ui/Avatar';
 import Badge from '@/components/ui/Badge';
 import { useAuth } from '@/context/AuthContext';
+import { useFarmer } from '@/context/FarmerContext';
 import { SEASON_INFO } from '@/data/mock/dashboard';
 
 export default function HeroSection() {
   const { user } = useAuth();
+  const { profile } = useFarmer();
+
+  const firstName = profile?.firstName || user?.firstName || 'Amarjeet';
+  const fullName = profile?.fullName || user?.fullName || 'Amarjeet Kushwaha';
+  const locationText = profile?.village
+    ? `${profile.village}, ${profile.district || profile.state || 'Punjab'}`
+    : user?.preferences?.location || 'Punjab, India';
 
   return (
     <section
@@ -27,13 +35,13 @@ export default function HeroSection() {
 
           <p className="text-sm text-primary-100">Good morning,</p>
           <h1 id="dashboard-hero-title" className="mt-0.5 font-display text-2xl font-bold sm:text-3xl">
-            {user?.firstName || 'Farmer'} 🌾
+            {firstName} 🌾
           </h1>
 
           <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-sm text-primary-100">
             <span className="inline-flex items-center gap-1.5">
               <FiMapPin aria-hidden="true" />
-              Farm #1 · {user?.preferences?.location || 'Punjab, India'}
+              Farm #1 · {locationText}
             </span>
             <span className="inline-flex items-center gap-1.5">
               <FiCalendar aria-hidden="true" />
@@ -43,7 +51,7 @@ export default function HeroSection() {
         </div>
 
         <div className="flex items-center gap-4 rounded-2xl bg-white/10 p-4 backdrop-blur">
-          <Avatar name={user?.fullName} size="lg" />
+          <Avatar name={fullName} size="lg" />
           <div>
             <p className="text-xs text-primary-100">Season earnings</p>
             <p className="font-display text-2xl font-bold">{SEASON_INFO.seasonEarned}</p>

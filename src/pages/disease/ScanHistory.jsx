@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FiCamera, FiSearch } from 'react-icons/fi';
 
 import PageTransition from '@/components/ui/PageTransition';
@@ -20,11 +20,12 @@ const FILTERS = [
 ];
 
 export default function ScanHistory() {
+  const navigate = useNavigate();
   const { scans, stats } = useDisease();
   const [filter, setFilter] = useState('all');
   const [query, setQuery] = useState('');
 
-  const safeScans = useMemo(() => (Array.isArray(scans) ? scans : []), [scans]);
+  const safeScans = useMemo(() => (Array.isArray(scans) ? scans.filter(Boolean) : []), [scans]);
   const scansThisMonth = stats?.scansThisMonth ?? 0;
 
   const filtered = useMemo(() => {
@@ -83,9 +84,7 @@ export default function ScanHistory() {
           description="We couldn't find any scans matching your filters. Try a different crop or search term."
           actionLabel="Scan a leaf"
           action
-          onAction={() => {
-            window.location.href = '/dashboard/disease-detection';
-          }}
+          onAction={() => navigate('/dashboard/disease-detection')}
         />
       ) : (
         <div className="space-y-3">

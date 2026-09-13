@@ -60,7 +60,7 @@ export default function Register() {
         <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-4">
           <Input
             label="Full Name"
-            placeholder="e.g. Ramesh Kumar"
+            placeholder="e.g. Amarjeet Kushwaha"
             autoComplete="name"
             required
             error={errors.fullName?.message}

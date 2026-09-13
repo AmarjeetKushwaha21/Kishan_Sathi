@@ -21,37 +21,37 @@ export const FEATURES = [
     icon: FiCpu,
     title: 'AI Crop Advisor',
     text: 'Get personalised sowing, irrigation and fertiliser advice based on your soil and crop.',
-    to: '/crop-recommendation',
+    to: '/dashboard/recommendation',
   },
   {
     icon: FiCloudDrizzle,
     title: 'Weather Intelligence',
     text: 'Hyper-local forecasts and early warnings to protect your yield from bad weather.',
-    to: '/weather',
+    to: '/dashboard/weather',
   },
   {
     icon: FiTrendingUp,
     title: 'Live Market Prices',
     text: 'Real-time mandi prices across nearby markets so you always sell at the right time.',
-    to: '/mandi-prices',
+    to: '/dashboard/market-prices',
   },
   {
     icon: FiShield,
     title: 'Pest & Disease Alerts',
     text: 'Spot crop problems early with photo-based detection and instant remedies.',
-    to: '/disease-detection',
+    to: '/dashboard/disease-detection/alerts',
   },
   {
     icon: FiShoppingBag,
     title: 'Buy & Sell Bazaar',
     text: 'Connect directly with buyers, sellers and local cooperatives in your region.',
-    to: '/marketplace',
+    to: '/dashboard/marketplace/listings',
   },
   {
     icon: FiMessageSquare,
     title: 'Expert Support',
     text: 'Chat with agricultural experts in your language, anytime, anywhere.',
-    to: '/expert-consultation',
+    to: '/dashboard/consultation',
   },
 ];
 

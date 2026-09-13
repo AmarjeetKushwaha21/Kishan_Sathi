@@ -33,7 +33,7 @@ export default function StoreHome() {
 
   return (
     <PageTransition>
-      <StoreHeader title="Buy & Sell Bazaar" />
+      <StoreHeader title="Agriculture Store" />
 
       <section className="relative mb-6 overflow-hidden rounded-3xl bg-gradient-to-r from-primary-700 via-primary-600 to-primary-500 p-6 text-white shadow-card sm:p-8">
         <div aria-hidden="true" className="pointer-events-none absolute -right-10 -top-16 h-48 w-48 rounded-full bg-accent-400/25 blur-3xl" />

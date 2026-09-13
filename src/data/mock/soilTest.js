@@ -93,7 +93,7 @@ export const SOIL_REPORT = {
   testedAt: '12 Feb 2026',
   package: 'Standard Soil Test',
   labName: 'Punjab Agro Soil Lab',
-  farmer: { name: 'Ramesh Singh', plot: 'Plot #3 · Wheat field', area: '4.5 ac' },
+  farmer: { name: 'Amarjeet Kushwaha', plot: 'Plot #3 · Wheat field', area: '4.5 ac' },
   soilType: 'Loamy sand',
   texture: 'Loamy sand',
   drainage: 'Good',

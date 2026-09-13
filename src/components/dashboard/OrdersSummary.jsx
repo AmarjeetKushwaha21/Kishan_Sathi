@@ -14,7 +14,7 @@ const STATUS_STYLES = {
 export default function OrdersSummary() {
   return (
     <Card variant="soft" className="flex h-full flex-col">
-      <SectionHeader title="Recent Orders" subtitle="Your latest buy & sell activity" to="/dashboard/bazaar" />
+      <SectionHeader title="Recent Orders" subtitle="Your latest buy & sell activity" to="/dashboard/bazaar/my-orders" />
 
       <ul className="flex-1 space-y-3">
         {ORDERS.map((order) => {

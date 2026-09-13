@@ -73,7 +73,7 @@ export const QUICK_ACTIONS = [
   { label: 'AI Sathi', to: '/dashboard/ai-assistant', icon: 'FiCpu', color: 'primary' },
   { label: 'Weather', to: '/dashboard/weather', icon: 'FiCloudDrizzle', color: 'sky' },
   { label: 'Market Prices', to: '/dashboard/market-prices', icon: 'FiTrendingUp', color: 'accent' },
-  { label: 'Buy & Sell', to: '/dashboard/bazaar', icon: 'FiShoppingBag', color: 'violet' },
+  { label: 'Buy & Sell', to: '/dashboard/marketplace/listings', icon: 'FiShoppingBag', color: 'violet' },
 ];
 
 export const MANDI_PRICES = [

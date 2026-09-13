@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { FiArrowRight, FiCheckCircle, FiClock, FiDroplet, FiFileText } from 'react-icons/fi';
 
@@ -11,8 +12,16 @@ import { cn } from '@/utils/cn';
 
 export default function History() {
   const { reports, bookings } = useSoilTest();
-  const readyCount = reports.filter((r) => r.status === 'ready').length;
-  const avgScore = Math.round(reports.reduce((sum, r) => sum + r.score, 0) / reports.length);
+  const safeReports = useMemo(() => (Array.isArray(reports) ? reports.filter(Boolean) : []), [reports]);
+  const safeBookings = useMemo(() => (Array.isArray(bookings) ? bookings.filter(Boolean) : []), [bookings]);
+
+  const readyCount = safeReports.filter((r) => r.status === 'ready').length;
+  const avgScore =
+    safeReports.length > 0
+      ? Math.round(safeReports.reduce((sum, r) => sum + (r.score || 0), 0) / safeReports.length)
+      : 76;
+
+  const activeBookings = safeBookings.filter((b) => b.status === 'processing');
 
   return (
     <PageTransition>
@@ -29,21 +38,21 @@ export default function History() {
         </Card>
         <Card variant="soft" className="p-4">
           <p className="text-xs font-semibold uppercase tracking-wide text-gray-400">Last tested</p>
-          <p className="mt-1 font-display text-xl font-bold text-gray-900">{reports[0]?.testedAt}</p>
+          <p className="mt-1 font-display text-xl font-bold text-gray-900">{safeReports[0]?.testedAt || 'Recently'}</p>
         </Card>
         <Card variant="soft" className="p-4">
           <p className="text-xs font-semibold uppercase tracking-wide text-gray-400">Active bookings</p>
-          <p className="mt-1 font-display text-xl font-bold text-accent-600">{bookings.filter((b) => b.status === 'processing').length}</p>
+          <p className="mt-1 font-display text-xl font-bold text-accent-600">{activeBookings.length}</p>
         </Card>
       </div>
 
-      {bookings.filter((b) => b.status === 'processing').length > 0 && (
+      {activeBookings.length > 0 && (
         <section aria-label="Bookings" className="mt-8">
           <h2 className="mb-4 flex items-center gap-2 font-display text-base font-semibold text-gray-900">
             <FiClock className="text-accent-500" aria-hidden="true" /> Scheduled bookings
           </h2>
           <div className="space-y-3">
-            {bookings.filter((b) => b.status === 'processing').map((booking) => (
+            {activeBookings.map((booking) => (
               <Card key={booking.id} variant="soft" className="flex flex-wrap items-center gap-4 p-4">
                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-accent-50 text-xl text-accent-600">
                   <FiClock aria-hidden="true" />

@@ -11,7 +11,9 @@ const SEVERITY_META = {
 };
 
 export default function PestAlertCard({ alert }) {
-  const { icon: Icon, badge, ring } = SEVERITY_META[alert.severity] || SEVERITY_META.info;
+  if (!alert) return null;
+  const severity = alert.severity || 'info';
+  const { icon: Icon, badge, ring } = SEVERITY_META[severity] || SEVERITY_META.info;
   return (
     <Card className={cn('border-l-4 p-5', ring)}>
       <div className="flex items-start gap-3">
@@ -20,16 +22,19 @@ export default function PestAlertCard({ alert }) {
         </span>
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">
-            <h3 className="font-display text-sm font-bold text-gray-900">{alert.title}</h3>
+            <h3 className="font-display text-sm font-bold text-gray-900">{alert.title || 'Pest Alert'}</h3>
             <Badge size="sm" variant={badge} className="capitalize">
-              {alert.severity}
+              {severity}
             </Badge>
           </div>
           <p className="mt-1 text-xs text-gray-500">
-            {alert.crop} · <span className="inline-flex items-center gap-0.5"><FiMapPin aria-hidden="true" /> {alert.region}</span>
+            {alert.crop || 'All Crops'} ·{' '}
+            <span className="inline-flex items-center gap-0.5">
+              <FiMapPin aria-hidden="true" /> {alert.region || 'Regional'}
+            </span>
           </p>
-          <p className="mt-2 text-sm leading-relaxed text-gray-600">{alert.message}</p>
-          <p className="mt-2 text-[11px] font-medium text-gray-400">{alert.date}</p>
+          <p className="mt-2 text-sm leading-relaxed text-gray-600">{alert.message || ''}</p>
+          {alert.date && <p className="mt-2 text-[11px] font-medium text-gray-400">{alert.date}</p>}
         </div>
       </div>
     </Card>

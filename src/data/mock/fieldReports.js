@@ -28,7 +28,7 @@ export const FIELD_REPORTS = [
       { label: 'Leaf greenness (SPAD)', value: '41', tone: 'good' },
       { label: 'Aphid count', value: '8 / plant', tone: 'watch' },
     ],
-    agent: 'Ramesh Kumar (Self)',
+    agent: 'Amarjeet Kushwaha (Self)',
     photos: 3,
   },
   {
@@ -78,7 +78,7 @@ export const FIELD_REPORTS = [
       { label: 'Plant height', value: '92 cm', tone: 'good' },
       { label: 'Soil moisture', value: '58%', tone: 'good' },
     ],
-    agent: 'Ramesh Kumar (Self)',
+    agent: 'Amarjeet Kushwaha (Self)',
     photos: 2,
   },
   {
@@ -103,7 +103,7 @@ export const FIELD_REPORTS = [
       { label: 'Flagged plants', value: '2', tone: 'watch' },
       { label: 'Humidity (GH)', value: '71%', tone: 'watch' },
     ],
-    agent: 'Ramesh Kumar (Self)',
+    agent: 'Amarjeet Kushwaha (Self)',
     photos: 5,
   },
   {
@@ -143,7 +143,7 @@ export const FIELD_REPORTS = [
       { label: 'Moisture @15cm', value: '55%', tone: 'good' },
       { label: 'Water temp', value: '24°C', tone: 'good' },
     ],
-    agent: 'Ramesh Kumar (Self)',
+    agent: 'Amarjeet Kushwaha (Self)',
     photos: 0,
   },
 ];

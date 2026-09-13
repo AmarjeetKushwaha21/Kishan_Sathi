@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FiAlertTriangle, FiBell, FiInfo, FiLayers } from 'react-icons/fi';
 
 import PageTransition from '@/components/ui/PageTransition';
@@ -21,9 +21,10 @@ const FILTERS = [
 const FILTER_ICONS = { all: FiLayers, warning: FiAlertTriangle, advisory: FiBell, info: FiInfo };
 
 export default function PestAlerts() {
+  const navigate = useNavigate();
   const { alerts } = useDisease();
   const [filter, setFilter] = useState('all');
-  const safeAlerts = useMemo(() => (Array.isArray(alerts) ? alerts : []), [alerts]);
+  const safeAlerts = useMemo(() => (Array.isArray(alerts) ? alerts.filter(Boolean) : []), [alerts]);
 
   const filtered = useMemo(
     () => (filter === 'all' ? safeAlerts : safeAlerts.filter((a) => a?.severity === filter)),
@@ -86,9 +87,7 @@ export default function PestAlerts() {
             description="Nothing to worry about for this category right now. Check back after the next weather update."
             actionLabel="New scan"
             action
-            onAction={() => {
-              window.location.href = '/dashboard/disease-detection';
-            }}
+            onAction={() => navigate('/dashboard/disease-detection')}
           />
         ) : (
           <div className="grid gap-4 lg:grid-cols-2">

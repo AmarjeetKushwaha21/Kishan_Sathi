@@ -18,10 +18,14 @@ import { NotificationProvider } from '@/context/NotificationContext';
 import { FarmerProvider } from '@/context/FarmerContext';
 import { AdminProvider } from '@/context/AdminContext';
 import { DiseaseProvider } from '@/context/DiseaseContext';
+import { GovernmentProvider } from '@/context/GovernmentContext';
 
 const Splash = lazy(() => import('@/pages/Splash'));
 const Landing = lazy(() => import('@/pages/Landing'));
 const NotFound = lazy(() => import('@/pages/NotFound'));
+
+const CentralSchemes = lazy(() => import('@/pages/government/CentralSchemes'));
+const StateSchemes = lazy(() => import('@/pages/government/StateSchemes'));
 
 const PublicLayout = lazy(() => import('@/components/public/PublicLayout'));
 const FeaturesPage = lazy(() => import('@/pages/public/Features'));
@@ -194,7 +198,15 @@ export default function AppRoutes() {
           </Route>
 
           <Route element={<ProtectedRoute />}>
-            <Route element={<NotificationProvider><DashboardLayout /></NotificationProvider>}>
+            <Route
+              element={
+                <FarmerProvider>
+                  <NotificationProvider>
+                    <DashboardLayout />
+                  </NotificationProvider>
+                </FarmerProvider>
+              }
+            >
               <Route path="/dashboard" element={<PageSuspense><DashboardHome /></PageSuspense>} />
               <Route
                 path="/dashboard/field-reports"
@@ -317,17 +329,15 @@ export default function AppRoutes() {
               <Route path="/dashboard/notifications" element={<PageSuspense><NotificationCenter /></PageSuspense>} />
               <Route path="/dashboard/notifications/:notificationId?" element={<PageSuspense><NotificationDetails /></PageSuspense>} />
 
-              <Route element={<ProviderRoute provider={FarmerProvider} />}>
-                <Route path="/dashboard/profile" element={<PageSuspense><ProfileHome /></PageSuspense>} />
-                <Route path="/dashboard/profile/edit" element={<PageSuspense><EditProfile /></PageSuspense>} />
-                <Route path="/dashboard/profile/farm" element={<PageSuspense><FarmDetails /></PageSuspense>} />
-                <Route path="/dashboard/profile/land" element={<PageSuspense><LandDetails /></PageSuspense>} />
-                <Route path="/dashboard/profile/documents" element={<PageSuspense><Documents /></PageSuspense>} />
-                <Route path="/dashboard/profile/bank" element={<PageSuspense><BankDetails /></PageSuspense>} />
-                <Route path="/dashboard/profile/crops" element={<PageSuspense><CropHistory /></PageSuspense>} />
-                <Route path="/dashboard/profile/achievements" element={<PageSuspense><Achievements /></PageSuspense>} />
-                <Route path="/dashboard/profile/settings" element={<PageSuspense><FarmerSettings /></PageSuspense>} />
-              </Route>
+              <Route path="/dashboard/profile" element={<PageSuspense><ProfileHome /></PageSuspense>} />
+              <Route path="/dashboard/profile/edit" element={<PageSuspense><EditProfile /></PageSuspense>} />
+              <Route path="/dashboard/profile/farm" element={<PageSuspense><FarmDetails /></PageSuspense>} />
+              <Route path="/dashboard/profile/land" element={<PageSuspense><LandDetails /></PageSuspense>} />
+              <Route path="/dashboard/profile/documents" element={<PageSuspense><Documents /></PageSuspense>} />
+              <Route path="/dashboard/profile/bank" element={<PageSuspense><BankDetails /></PageSuspense>} />
+              <Route path="/dashboard/profile/crops" element={<PageSuspense><CropHistory /></PageSuspense>} />
+              <Route path="/dashboard/profile/achievements" element={<PageSuspense><Achievements /></PageSuspense>} />
+              <Route path="/dashboard/profile/settings" element={<PageSuspense><FarmerSettings /></PageSuspense>} />
 
               <Route element={<ProviderRoute provider={AdminProvider} />}>
                 <Route path="/dashboard/admin" element={<PageSuspense><AdminDashboard /></PageSuspense>} />
@@ -344,6 +354,12 @@ export default function AppRoutes() {
                 <Route path="/dashboard/admin/settings" element={<PageSuspense><AdminSettings /></PageSuspense>} />
               </Route>
 
+              <Route element={<ProviderRoute provider={GovernmentProvider} />}>
+                <Route path="/dashboard/central-schemes" element={<PageSuspense><CentralSchemes /></PageSuspense>} />
+                <Route path="/dashboard/state-schemes" element={<PageSuspense><StateSchemes /></PageSuspense>} />
+              </Route>
+
+              <Route path="/dashboard/orders" element={<Navigate to="/dashboard/bazaar/my-orders" replace />} />
               <Route path="/dashboard/settings" element={<Navigate to="/dashboard/profile/settings" replace />} />
             </Route>
           </Route>

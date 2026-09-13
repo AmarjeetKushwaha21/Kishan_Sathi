@@ -14,11 +14,13 @@ import { useAuth } from '@/context/AuthContext';
 export default function ProfileHome() {
   const { profile, landStats, achievements } = useFarmer();
   const { logout } = useAuth();
-  const unlocked = achievements.filter((a) => !a.locked).slice(0, 3);
+  const safeAchievements = Array.isArray(achievements) ? achievements : [];
+  const safeLandStats = landStats || { count: 4, total: 12.5, owned: 8.5, leased: 4.0 };
+  const unlocked = safeAchievements.filter((a) => !a.locked).slice(0, 3);
 
   const quickLinks = [
     { to: '/dashboard/profile/farm', icon: FiHome, label: 'Farm Details', description: 'Soil, irrigation and machinery', tone: 'primary' },
-    { to: '/dashboard/profile/land', icon: FiMap, label: 'Land Details', description: `${landStats.count} parcels · ${landStats.total} acres`, tone: 'sky' },
+    { to: '/dashboard/profile/land', icon: FiMap, label: 'Land Details', description: `${safeLandStats.count} parcels · ${safeLandStats.total} acres`, tone: 'sky' },
     { to: '/dashboard/profile/documents', icon: FiFileText, label: 'Documents', description: 'Land records, Aadhaar and licences', tone: 'indigo' },
     { to: '/dashboard/profile/bank', icon: FiCreditCard, label: 'Bank Details', description: 'Account, KYC and payouts', tone: 'emerald' },
     { to: '/dashboard/profile/crops', icon: FiGrid, label: 'Crop History', description: 'Season-wise yields and profits', tone: 'accent' },

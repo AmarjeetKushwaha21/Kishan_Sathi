@@ -12,6 +12,7 @@ import Badge from '@/components/ui/Badge';
 import SoilHeader from '@/components/soil/SoilHeader';
 import StepIndicator from '@/components/soil/StepIndicator';
 import { useSoilTest } from '@/context/SoilTestContext';
+import { useFarmer } from '@/context/FarmerContext';
 import { cn } from '@/utils/cn';
 
 const TIME_SLOTS = ['8:00 AM', '9:30 AM', '11:00 AM', '2:30 PM', '4:00 PM', '5:30 PM'];
@@ -30,6 +31,7 @@ function nextDays(count) {
 
 export default function Appointment() {
   const { selectedLab, selectedPackageInfo, bookAppointment } = useSoilTest();
+  const { profile } = useFarmer();
   const [date, setDate] = useState(() => nextDays(7)[0]);
   const [time, setTime] = useState(TIME_SLOTS[1]);
   const [slotType, setSlotType] = useState(SLOT_TYPES[0]);
@@ -42,7 +44,10 @@ export default function Appointment() {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    defaultValues: { name: 'Ramesh Singh', phone: '9876543210' },
+    defaultValues: {
+      name: profile?.fullName || 'Amarjeet Kushwaha',
+      phone: profile?.phone?.replace(/\D/g, '').slice(-10) || '9876543210',
+    },
   });
 
   async function onConfirm() {

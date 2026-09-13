@@ -56,7 +56,7 @@ export const CATEGORY_SPLIT = [
 ];
 
 export const ADMIN_USERS = [
-  { id: 'U-1042', name: 'Ramesh Kumar', phone: '+91 98765 43210', role: 'Farmer', joined: '12 Mar 2026', status: 'active' },
+  { id: 'U-1042', name: 'Amarjeet Kushwaha', phone: '+91 98765 43210', role: 'Farmer', joined: '12 Mar 2026', status: 'active' },
   { id: 'U-1041', name: 'Gurpreet Singh', phone: '+91 98144 22001', role: 'Farmer', joined: '11 Mar 2026', status: 'active' },
   { id: 'U-1040', name: 'AgroCorp India', phone: '+91 99155 11200', role: 'Company', joined: '10 Mar 2026', status: 'active' },
   { id: 'U-1039', name: 'Dr. Amandeep Kaur', phone: '+91 99600 77812', role: 'Expert', joined: '09 Mar 2026', status: 'pending' },
@@ -69,7 +69,7 @@ export const ADMIN_USERS = [
 ];
 
 export const ADMIN_FARMERS = [
-  { id: 'F-2101', name: 'Ramesh Kumar', village: 'Gaddowal', district: 'Ludhiana', landArea: '22.5 acres', verified: true, status: 'active', lastActive: 'Today' },
+  { id: 'F-2101', name: 'Amarjeet Kushwaha', village: 'Gaddowal', district: 'Ludhiana', landArea: '22.5 acres', verified: true, status: 'active', lastActive: 'Today' },
   { id: 'F-2100', name: 'Gurpreet Singh', village: 'Jassian', district: 'Ludhiana', landArea: '14 acres', verified: true, status: 'active', lastActive: 'Today' },
   { id: 'F-2099', name: 'Harpreet Kaur', village: 'Sahnewal', district: 'Ludhiana', landArea: '9 acres', verified: false, status: 'active', lastActive: '2 days ago' },
   { id: 'F-2098', name: 'Mohinder Singh', village: 'Khanna', district: 'Khanna', landArea: '31 acres', verified: true, status: 'inactive', lastActive: '1 week ago' },
@@ -107,22 +107,22 @@ export const ADMIN_PRODUCTS = [
 ];
 
 export const ADMIN_ORDERS = [
-  { id: 'KS-BZ-1187', customer: 'Ramesh Kumar', items: 3, amount: 1540, status: 'delivered', date: '12 Aug 2026', payment: 'UPI' },
+  { id: 'KS-BZ-1187', customer: 'Amarjeet Kushwaha', items: 3, amount: 1540, status: 'delivered', date: '12 Aug 2026', payment: 'UPI' },
   { id: 'KS-BZ-1186', customer: 'Gurpreet Singh', items: 2, amount: 1620, status: 'shipped', date: '12 Aug 2026', payment: 'COD' },
   { id: 'KS-BZ-1185', customer: 'Harpreet Kaur', items: 5, amount: 4010, status: 'placed', date: '11 Aug 2026', payment: 'UPI' },
   { id: 'KS-BZ-1184', customer: 'Simran Kaur', items: 1, amount: 266, status: 'shipped', date: '10 Aug 2026', payment: 'Wallet' },
   { id: 'KS-BZ-1183', customer: 'Baldev Singh', items: 4, amount: 3380, status: 'delivered', date: '09 Aug 2026', payment: 'UPI' },
   { id: 'KS-BZ-1182', customer: 'Mohinder Singh', items: 2, amount: 960, status: 'cancelled', date: '08 Aug 2026', payment: 'UPI' },
   { id: 'KS-BZ-1181', customer: 'Gurpreet Singh', items: 6, amount: 5220, status: 'delivered', date: '07 Aug 2026', payment: 'COD' },
-  { id: 'KS-BZ-1180', customer: 'Ramesh Kumar', items: 1, amount: 450, status: 'refunded', date: '06 Aug 2026', payment: 'UPI' },
+  { id: 'KS-BZ-1180', customer: 'Amarjeet Kushwaha', items: 1, amount: 450, status: 'refunded', date: '06 Aug 2026', payment: 'UPI' },
 ];
 
 export const ADMIN_LISTINGS = [
-  { id: 'CR-021', crop: 'Wheat', quantity: '12 qtl', price: '₹2,140/q', farmer: 'Ramesh Kumar', company: 'AgroCorp India', offers: 4, status: 'open', date: '12 Aug 2026' },
+  { id: 'CR-021', crop: 'Wheat', quantity: '12 qtl', price: '₹2,140/q', farmer: 'Amarjeet Kushwaha', company: 'AgroCorp India', offers: 4, status: 'open', date: '12 Aug 2026' },
   { id: 'CR-020', crop: 'Potato', quantity: '45 qtl', price: '₹1,150/q', farmer: 'Gurpreet Singh', company: 'Shubham Traders', offers: 7, status: 'open', date: '11 Aug 2026' },
   { id: 'CR-019', crop: 'Paddy', quantity: '80 qtl', price: '₹2,300/q', farmer: 'Baldev Singh', company: 'Kisan Mandi Ltd.', offers: 2, status: 'deal', date: '09 Aug 2026' },
   { id: 'CR-018', crop: 'Onion', quantity: '20 qtl', price: '₹1,180/q', farmer: 'Simran Kaur', company: '—', offers: 1, status: 'open', date: '08 Aug 2026' },
-  { id: 'CR-017', crop: 'Maize', quantity: '40 qtl', price: '₹1,975/q', farmer: 'Ramesh Kumar', company: 'Punjab Agro', offers: 3, status: 'deal', date: '05 Aug 2026' },
+  { id: 'CR-017', crop: 'Maize', quantity: '40 qtl', price: '₹1,975/q', farmer: 'Amarjeet Kushwaha', company: 'Punjab Agro', offers: 3, status: 'deal', date: '05 Aug 2026' },
   { id: 'CR-016', crop: 'Fodder', quantity: '30 qtl', price: '₹700/q', farmer: 'Harpreet Kaur', company: '—', offers: 0, status: 'closed', date: '01 Aug 2026' },
 ];
 

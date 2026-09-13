@@ -15,6 +15,7 @@ import SoilHeader from '@/components/soil/SoilHeader';
 import ReportHero from '@/components/soil/ReportHero';
 import FactorCard from '@/components/soil/FactorCard';
 import { useSoilTest } from '@/context/SoilTestContext';
+import { SOIL_REPORT } from '@/data/mock/soilTest';
 
 const DEEP_LINKS = [
   { to: '/dashboard/soil/nutrients', label: 'Nutrients', icon: FiLayers, color: 'bg-primary-50 text-primary-600' },
@@ -24,7 +25,8 @@ const DEEP_LINKS = [
 ];
 
 export default function SoilReport() {
-  const { latestReport: report } = useSoilTest();
+  const { latestReport } = useSoilTest();
+  const report = latestReport || SOIL_REPORT;
 
   return (
     <PageTransition>
